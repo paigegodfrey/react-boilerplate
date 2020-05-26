@@ -13,9 +13,11 @@ const ngrok =
     : false;
 const { resolve } = require('path');
 const app = express();
+app.use(express.json());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+const stringsRoutes = require('./routes/strings');
+app.use('/api/strings', stringsRoutes);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
