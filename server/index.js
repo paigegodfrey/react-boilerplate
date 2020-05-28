@@ -20,7 +20,8 @@ const stringsRoutes = require('./routes/strings');
 app.use('/api/strings', stringsRoutes);
 
 /** general error handler */
-app.use((err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
   return res.json({
