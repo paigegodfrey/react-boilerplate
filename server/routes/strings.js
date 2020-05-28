@@ -2,24 +2,24 @@
 
 const express = require('express');
 const router = new express.Router();
-
-let data = ['Original string!', 'Second string!', 'Third string!'];
+const StringData = require('../models/stringData');
 
 /** GET /   get all strings
  */
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    return res.json(data);
+    const result = await StringData.findAll();
+    return res.json(result);
   } catch (err) {
     return next(err);
   }
 });
 
-/** POST /     add a new string
+/** POST /     add new string
  */
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { str } = req.body;
     if (!str || !str.trim()) {
@@ -27,8 +27,8 @@ router.post('/', (req, res, next) => {
       error.status = 400;
       throw error;
     }
-    data = [str, ...data];
-    return res.status(201).json(data[0]);
+    const result = await StringData.create(str);
+    return res.status(201).json(result[0]);
   } catch (err) {
     return next(err);
   }
