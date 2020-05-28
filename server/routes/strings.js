@@ -22,9 +22,12 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   try {
     const { str } = req.body;
-    if (!str || !str.trim()) throw new Error('Please input valid string.');
+    if (!str || !str.trim()) {
+      const error = new Error('Error - must input valid string');
+      error.status = 400;
+      throw error;
+    }
     data = [str, ...data];
-
     return res.status(201).json(data[0]);
   } catch (err) {
     return next(err);
