@@ -1,6 +1,6 @@
 /**
  *
- * MainPage
+ * AddString
  *
  */
 
@@ -14,32 +14,34 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectMainPage from './selectors';
+import makeSelectAddString from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-export function MainPage() {
-  useInjectReducer({ key: 'mainPage', reducer });
-  useInjectSaga({ key: 'mainPage', saga });
+export function AddString() {
+  useInjectReducer({ key: 'addString', reducer });
+  useInjectSaga({ key: 'addString', saga });
 
   return (
     <div>
       <Helmet>
-        <title>MainPage</title>
-        <meta name="description" content="Description of MainPage" />
+        <title>Create New String</title>
+        <meta name="description" content="create new string" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
+      <h1>
+        <FormattedMessage {...messages.header} />
+      </h1>
     </div>
   );
 }
 
-MainPage.propTypes = {
+AddString.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  mainPage: makeSelectMainPage(),
+  addString: makeSelectAddString(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -56,4 +58,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(MainPage);
+)(AddString);

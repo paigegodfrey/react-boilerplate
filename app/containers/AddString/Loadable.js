@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for MainPage
+ * Asynchronously loads the component for AddString
  *
  */
 

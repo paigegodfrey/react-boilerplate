@@ -2,24 +2,24 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the mainPage state domain
+ * Direct selector to the addString state domain
  */
 
-const selectMainPageDomain = state => state.mainPage || initialState;
+const selectAddStringDomain = state => state.addString || initialState;
 
 /**
  * Other specific selectors
  */
 
 /**
- * Default selector used by MainPage
+ * Default selector used by AddString
  */
 
-const makeSelectMainPage = () =>
+const makeSelectAddString = () =>
   createSelector(
-    selectMainPageDomain,
+    selectAddStringDomain,
     substate => substate,
   );
 
-export default makeSelectMainPage;
-export { selectMainPageDomain };
+export default makeSelectAddString;
+export { selectAddStringDomain };

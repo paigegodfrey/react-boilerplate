@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import mainPageReducer from '../reducer';
+import addStringReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('mainPageReducer', () => {
+describe('addStringReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe('mainPageReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(mainPageReducer(undefined, {})).toEqual(expectedResult);
+    expect(addStringReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**

@@ -1,6 +1,6 @@
-// import { selectMainPageDomain } from '../selectors';
+// import { selectAddStringDomain } from '../selectors';
 
-describe('selectMainPageDomain', () => {
+describe('selectAddStringDomain', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

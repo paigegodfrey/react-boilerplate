@@ -1,16 +1,16 @@
 /*
- * MainPage Messages
+ * AddString Messages
  *
- * This contains all the text for the MainPage container.
+ * This contains all the text for the AddString container.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.containers.MainPage';
+export const scope = 'app.containers.AddString';
 
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'This is the MainPage container!',
+    defaultMessage: 'Create a new string!',
   },
 });

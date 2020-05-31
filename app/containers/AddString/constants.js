@@ -1,7 +1,7 @@
 /*
  *
- * MainPage constants
+ * AddString constants
  *
  */
 
-export const DEFAULT_ACTION = 'app/MainPage/DEFAULT_ACTION';
+export const DEFAULT_ACTION = 'app/AddString/DEFAULT_ACTION';

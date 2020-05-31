@@ -14,6 +14,6 @@ export default defineMessages({
   },
   addNewString: {
     id: `${scope}.addNewString`,
-    defaultMessage: 'Add New String',
+    defaultMessage: 'Create New String',
   },
 });
