@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 
+import TextWrapper from './TextWrapper';
+import Li from './Li';
+
 function StringsList({ loading, error, strings }) {
   if (loading) {
-    return <div>Loading...</div>;
+    return <TextWrapper>Loading...</TextWrapper>;
   }
 
   if (error !== false) {
-    return <div>Something went wrong, please try again!</div>;
+    return <TextWrapper>Something went wrong, please try again!</TextWrapper>;
   }
 
   if (strings !== false) {
@@ -16,7 +19,7 @@ function StringsList({ loading, error, strings }) {
       <div>
         <ul>
           {strings.map(string => (
-            <li key={uuid()}>{string}</li>
+            <Li key={uuid()}>{string}</Li>
           ))}
         </ul>
       </div>
