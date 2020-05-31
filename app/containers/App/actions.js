@@ -19,6 +19,9 @@ import {
   LOAD_STRINGS,
   LOAD_STRINGS_SUCCESS,
   LOAD_STRINGS_ERROR,
+  ADD_STRING,
+  ADD_STRING_SUCCESS,
+  ADD_STRING_ERROR,
 } from './constants';
 
 /**
@@ -56,6 +59,45 @@ export function stringsLoaded(strings) {
 export function stringLoadingError(error) {
   return {
     type: LOAD_STRINGS_ERROR,
+    error,
+  };
+}
+
+/**
+ * Add new string, this action starts the request saga
+ *
+ * @return {object} An action object with a type of ADD_STRING
+ */
+export function addString() {
+  return {
+    type: ADD_STRING,
+  };
+}
+
+/**
+ * Dispatched when the new string is added by the request saga
+ *
+ * @param  {array} string The new string data
+ *
+ * @return {object}      An action object with a type of ADD_STRING_SUCCESS passing the strings
+ */
+export function stringAdded(string) {
+  return {
+    type: ADD_STRING_SUCCESS,
+    string,
+  };
+}
+
+/**
+ * Dispatched when loading the strings fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of ADD_STRING_ERROR passing the error
+ */
+export function stringAddingError(error) {
+  return {
+    type: ADD_STRING_ERROR,
     error,
   };
 }

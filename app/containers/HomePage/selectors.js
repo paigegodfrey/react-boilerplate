@@ -5,26 +5,26 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectGlobal = state => state.home || initialState;
+const selectHome = state => state.home || initialState;
 
 const selectRouter = state => state.router;
 
 const makeSelectLoading = () =>
   createSelector(
-    selectGlobal,
-    globalState => globalState.loading,
+    selectHome,
+    homeState => homeState.loading,
   );
 
 const makeSelectError = () =>
   createSelector(
-    selectGlobal,
-    globalState => globalState.error,
+    selectHome,
+    homeState => homeState.error,
   );
 
 const makeSelectStrings = () =>
   createSelector(
-    selectGlobal,
-    globalState => globalState.strings,
+    selectHome,
+    homeState => homeState.strings,
   );
 
 const makeSelectLocation = () =>
@@ -34,7 +34,7 @@ const makeSelectLocation = () =>
   );
 
 export {
-  selectGlobal,
+  selectHome,
   makeSelectLoading,
   makeSelectError,
   makeSelectStrings,

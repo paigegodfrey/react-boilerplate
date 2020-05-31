@@ -15,13 +15,13 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import StringsList from 'components/StringsList';
+import reducer from './reducer';
 import {
   makeSelectStrings,
   makeSelectLoading,
   makeSelectError,
-} from 'containers/App/selectors';
-import StringsList from 'components/StringsList';
-import reducer from 'containers/App/reducer';
+} from './selectors';
 import messages from './messages';
 import { loadStrings } from '../App/actions';
 import saga from './saga';

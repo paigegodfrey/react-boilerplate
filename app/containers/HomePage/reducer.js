@@ -12,7 +12,7 @@ import {
   LOAD_STRINGS_SUCCESS,
   LOAD_STRINGS,
   LOAD_STRINGS_ERROR,
-} from './constants';
+} from 'containers/App/constants';
 
 // The initial state of the App
 export const initialState = {

@@ -12,3 +12,6 @@
 export const LOAD_STRINGS = 'boilerplate/App/LOAD_STRINGS';
 export const LOAD_STRINGS_SUCCESS = 'boilerplate/App/LOAD_STRINGS_SUCCESS';
 export const LOAD_STRINGS_ERROR = 'boilerplate/App/LOAD_STRINGS_ERROR';
+export const ADD_STRING = 'boilerplate/App/ADD_STRING';
+export const ADD_STRING_SUCCESS = 'boilerplate/App/ADD_STRING_SUCCESS';
+export const ADD_STRING_ERROR = 'boilerplate/App/ADD_STRING_ERROR';
