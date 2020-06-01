@@ -9,6 +9,7 @@ import {
   ADD_STRING,
   ADD_STRING_SUCCESS,
   ADD_STRING_ERROR,
+  RESET_FORM,
 } from './constants';
 
 /**
@@ -61,5 +62,16 @@ export function stringAddingError(error) {
   return {
     type: ADD_STRING_ERROR,
     error,
+  };
+}
+
+/**
+ * Dispatched when form submission is complete
+ *
+ * @return {object}       An action object with a type of RESET_FORM
+ */
+export function resetForm() {
+  return {
+    type: RESET_FORM,
   };
 }

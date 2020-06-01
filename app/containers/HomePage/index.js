@@ -28,13 +28,13 @@ import messages from './messages';
 
 const key = 'home';
 
-export function HomePage({ loading, error, strings, onPageLoad }) {
+export function HomePage({ loading, error, strings, fetchStrings }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-    onPageLoad();
-  }, [strings]);
+    fetchStrings();
+  }, []);
 
   const stringsListProps = {
     loading,
@@ -60,7 +60,7 @@ HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  onPageLoad: PropTypes.func,
+  fetchStrings: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -71,7 +71,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onPageLoad: () => dispatch(loadStrings()),
+    fetchStrings: () => dispatch(loadStrings()),
   };
 }
 

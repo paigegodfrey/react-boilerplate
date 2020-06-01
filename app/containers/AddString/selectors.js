@@ -7,10 +7,10 @@ import { initialState } from './reducer';
 
 const selectAddString = state => state.addString || initialState;
 
-const makeSelectAddStringLoading = () =>
+const makeSelectAddStringSaved = () =>
   createSelector(
     selectAddString,
-    substate => substate.loading,
+    substate => substate.saveConfirmed,
   );
 
 const makeSelectAddStringError = () =>
@@ -27,7 +27,7 @@ const makeSelectAddString = () =>
 
 export {
   selectAddString,
-  makeSelectAddStringLoading,
+  makeSelectAddStringSaved,
   makeSelectAddStringError,
   makeSelectAddString,
 };

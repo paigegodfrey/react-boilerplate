@@ -9,10 +9,11 @@ import {
   ADD_STRING,
   ADD_STRING_SUCCESS,
   ADD_STRING_ERROR,
+  RESET_FORM,
 } from './constants';
 
 export const initialState = {
-  loading: false,
+  saveConfirmed: false,
   error: false,
   newString: '',
 };
@@ -26,19 +27,25 @@ const addStringReducer = (state = initialState, action) =>
         break;
 
       case ADD_STRING:
-        draft.loading = true;
+        draft.saveConfirmed = false;
         draft.error = false;
         draft.newString = draft.newString;
         break;
 
       case ADD_STRING_SUCCESS:
         draft.newString = action.newString;
-        draft.loading = false;
+        draft.saveConfirmed = true;
         break;
 
       case ADD_STRING_ERROR:
         draft.error = action.error;
-        draft.loading = false;
+        draft.saveConfirmed = false;
+        break;
+
+      case RESET_FORM:
+        draft.saveConfirmed = false;
+        draft.error = false;
+        draft.newString = '';
         break;
     }
   });

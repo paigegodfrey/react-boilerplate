@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -14,15 +14,15 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import Alert from 'components/Alert';
 import Input from './Input';
 import Button from './Button';
-import { addString, changeString } from './actions';
+import { addString, changeString, resetForm } from './actions';
 import {
   makeSelectAddString,
-  makeSelectAddStringLoading,
+  makeSelectAddStringSaved,
   makeSelectAddStringError,
 } from './selectors';
-// import { addString, stringAdded, stringAddingError } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -31,13 +31,18 @@ const key = 'addString';
 
 export function AddString({
   newString,
-  // loading,
-  // error,
-  onSubmitForm,
+  saveConfirmed,
+  error,
   onChangeString,
+  onSubmitForm,
+  clearForm,
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+
+  useEffect(() => {
+    clearForm();
+  }, []);
 
   return (
     <div>
@@ -60,21 +65,28 @@ export function AddString({
         </label>
         <Button>Submit</Button>
       </form>
+      {error !== false ? (
+        <Alert color="#F44336" message="Please input valid string" />
+      ) : null}
+      {saveConfirmed ? (
+        <Alert color="#4CAF50" message="String added successfully!" />
+      ) : null}
     </div>
   );
 }
 
 AddString.propTypes = {
-  loading: PropTypes.bool,
+  saveConfirmed: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   newString: PropTypes.string,
   onSubmitForm: PropTypes.func,
   onChangeString: PropTypes.func,
+  clearForm: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   newStrings: makeSelectAddString(),
-  loading: makeSelectAddStringLoading(),
+  saveConfirmed: makeSelectAddStringSaved(),
   error: makeSelectAddStringError(),
 });
 
@@ -85,6 +97,7 @@ function mapDispatchToProps(dispatch) {
       evt.preventDefault();
       dispatch(addString());
     },
+    clearForm: () => dispatch(resetForm()),
   };
 }
 
