@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// eslint-disable-next-line react/prop-types
 function Alert({ color, message }) {
   const Div = styled.div`
     width: 70%;
@@ -14,5 +14,10 @@ function Alert({ color, message }) {
 
   return <Div>{message}</Div>;
 }
+
+Alert.propTypes = {
+  color: PropTypes.string,
+  message: PropTypes.string,
+};
 
 export default Alert;

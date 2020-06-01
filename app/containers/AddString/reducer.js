@@ -29,7 +29,6 @@ const addStringReducer = (state = initialState, action) =>
       case ADD_STRING:
         draft.saveConfirmed = false;
         draft.error = false;
-        draft.newString = draft.newString;
         break;
 
       case ADD_STRING_SUCCESS:
