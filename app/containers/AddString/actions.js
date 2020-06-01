@@ -4,7 +4,26 @@
  *
  */
 
-import { ADD_STRING, ADD_STRING_SUCCESS, ADD_STRING_ERROR } from './constants';
+import {
+  CHANGE_STRING,
+  ADD_STRING,
+  ADD_STRING_SUCCESS,
+  ADD_STRING_ERROR,
+} from './constants';
+
+/**
+ * Changes the input field of the form
+ *
+ * @param  {string} newString The new text of the input field
+ *
+ * @return {object} An action object with a type of CHANGE_STRING
+ */
+export function changeString(newString) {
+  return {
+    type: CHANGE_STRING,
+    newString,
+  };
+}
 
 /**
  * Add new string, this action starts the request saga
@@ -32,7 +51,7 @@ export function stringAdded(newString) {
 }
 
 /**
- * Dispatched when loading the strings fails
+ * Dispatched when adding the strings fails
  *
  * @param  {object} error The error
  *

@@ -1,5 +1,5 @@
 /**
- * Gets the repositories of the user from Github
+ * Gets the string array from the server
  */
 
 import { call, put, takeLatest } from 'redux-saga/effects';

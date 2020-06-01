@@ -16,10 +16,11 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import Input from './Input';
 import Button from './Button';
+import { addString, changeString } from './actions';
 import {
   makeSelectAddString,
-  // makeSelectAddStringLoading,
-  // makeSelectAddStringError,
+  makeSelectAddStringLoading,
+  makeSelectAddStringError,
 } from './selectors';
 // import { addString, stringAdded, stringAddingError } from './actions';
 import reducer from './reducer';
@@ -28,7 +29,13 @@ import messages from './messages';
 
 const key = 'addString';
 
-export function AddString() {
+export function AddString({
+  newString,
+  // loading,
+  // error,
+  onSubmitForm,
+  onChangeString,
+}) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -41,16 +48,14 @@ export function AddString() {
       <h1>
         <FormattedMessage {...messages.header} />
       </h1>
-      <form
-      // onSubmit={onSubmitForm}
-      >
+      <form onSubmit={onSubmitForm}>
         <label htmlFor="newString">
           <Input
             id="newString"
             type="text"
             placeholder="Enter text..."
-            // value={newString}
-            // onChange={onChangeString}
+            value={newString}
+            onChange={onChangeString}
           />
         </label>
         <Button>Submit</Button>
@@ -60,16 +65,26 @@ export function AddString() {
 }
 
 AddString.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  newString: PropTypes.string,
+  onSubmitForm: PropTypes.func,
+  onChangeString: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  addString: makeSelectAddString(),
+  newStrings: makeSelectAddString(),
+  loading: makeSelectAddStringLoading(),
+  error: makeSelectAddStringError(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onChangeString: evt => dispatch(changeString(evt.target.value)),
+    onSubmitForm: evt => {
+      evt.preventDefault();
+      dispatch(addString());
+    },
   };
 }
 
