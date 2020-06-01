@@ -16,15 +16,15 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import StringsList from 'components/StringsList';
-import reducer from './reducer';
 import {
   makeSelectStrings,
   makeSelectLoading,
   makeSelectError,
 } from './selectors';
-import messages from './messages';
-import { loadStrings } from '../App/actions';
+import { loadStrings } from './actions';
+import reducer from './reducer';
 import saga from './saga';
+import messages from './messages';
 
 const key = 'home';
 
@@ -34,7 +34,7 @@ export function HomePage({ loading, error, strings, onPageLoad }) {
 
   useEffect(() => {
     onPageLoad();
-  }, []);
+  }, [strings]);
 
   const stringsListProps = {
     loading,

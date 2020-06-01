@@ -6,22 +6,31 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectAddString from './selectors';
+import { useInjectSaga } from 'utils/injectSaga';
+import Input from './Input';
+import Button from './Button';
+import {
+  makeSelectAddString,
+  // makeSelectAddStringLoading,
+  // makeSelectAddStringError,
+} from './selectors';
+// import { addString, stringAdded, stringAddingError } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
+const key = 'addString';
+
 export function AddString() {
-  useInjectReducer({ key: 'addString', reducer });
-  useInjectSaga({ key: 'addString', saga });
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   return (
     <div>
@@ -32,6 +41,20 @@ export function AddString() {
       <h1>
         <FormattedMessage {...messages.header} />
       </h1>
+      <form
+      // onSubmit={onSubmitForm}
+      >
+        <label htmlFor="newString">
+          <Input
+            id="newString"
+            type="text"
+            placeholder="Enter text..."
+            // value={newString}
+            // onChange={onChangeString}
+          />
+        </label>
+        <Button>Submit</Button>
+      </form>
     </div>
   );
 }

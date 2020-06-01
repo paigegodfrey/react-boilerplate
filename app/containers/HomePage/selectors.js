@@ -1,13 +1,11 @@
 /**
- * The global state selectors
+ * Home state selectors
  */
 
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 const selectHome = state => state.home || initialState;
-
-const selectRouter = state => state.router;
 
 const makeSelectLoading = () =>
   createSelector(
@@ -27,16 +25,4 @@ const makeSelectStrings = () =>
     homeState => homeState.strings,
   );
 
-const makeSelectLocation = () =>
-  createSelector(
-    selectRouter,
-    routerState => routerState.location,
-  );
-
-export {
-  selectHome,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectStrings,
-  makeSelectLocation,
-};
+export { selectHome, makeSelectLoading, makeSelectError, makeSelectStrings };

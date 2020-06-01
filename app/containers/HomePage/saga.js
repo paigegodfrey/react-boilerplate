@@ -3,10 +3,9 @@
  */
 
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { LOAD_STRINGS } from 'containers/App/constants';
-import { stringsLoaded, stringLoadingError } from 'containers/App/actions';
-
 import axios from 'axios';
+import { LOAD_STRINGS } from './constants';
+import { stringsLoaded, stringLoadingError } from './actions';
 
 const BASE_URL = 'http://localhost:3000';
 

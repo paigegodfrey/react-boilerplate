@@ -1,25 +1,33 @@
+/**
+ * AddString state selectors
+ */
+
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-/**
- * Direct selector to the addString state domain
- */
+const selectAddString = state => state.addString || initialState;
 
-const selectAddStringDomain = state => state.addString || initialState;
+const makeSelectAddStringLoading = () =>
+  createSelector(
+    selectAddString,
+    substate => substate.loading,
+  );
 
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by AddString
- */
+const makeSelectAddStringError = () =>
+  createSelector(
+    selectAddString,
+    substate => substate.error,
+  );
 
 const makeSelectAddString = () =>
   createSelector(
-    selectAddStringDomain,
-    substate => substate,
+    selectAddString,
+    substate => substate.newString,
   );
 
-export default makeSelectAddString;
-export { selectAddStringDomain };
+export {
+  selectAddString,
+  makeSelectAddStringLoading,
+  makeSelectAddStringError,
+  makeSelectAddString,
+};
