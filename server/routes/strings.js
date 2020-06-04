@@ -25,11 +25,10 @@ router.post('/', async (req, res, next) => {
     if (!newString || !newString.trim()) {
       const error = new Error('Error - must input valid string');
       error.status = 400;
-      throw error;
-    } else {
-      const result = await StringData.create(newString);
-      return res.status(201).json(result);
+      return next(error);
     }
+    const result = await StringData.create(newString);
+    return res.status(201).json(result);
   } catch (err) {
     return next(err);
   }
